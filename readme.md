@@ -35,25 +35,17 @@ bf.api('getMe')
   * @see https://core.telegram.org/bots/api#getupdates
   */
 function getUpdates(parameters) {
-  
   const timeout = parameters.timeout || 2;
-  
   bf.api('getUpdates', parameters, timeout)
     .then((json) => {
-        
       if(json.ok) {
-        
-        let updates = json.result;
-
+        const updates = json.result;
         // ...
-        
         if(updates.length > 0) {
           const identifiers = updates.map((update) => update.update_id);
           parameters.offset = Math.max.apply(Math, identifiers) + 1;
         }
-        
         getUpdates(parameters);
-      
       } else {
         console.error(json.description);
       }
