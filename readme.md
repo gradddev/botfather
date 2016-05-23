@@ -9,9 +9,11 @@ $ cd node_modules/botfather
 $ TOKEN=... npm test
 ```
 ## Using BotFather
+We recommend storing the access token as environment variable.
 ```javascript
-const TOKEN = 'token';
-
+const TOKEN = process.env.TOKEN;
+```
+```javascript
 const BotFather = require('botfather');
 const bf = new BotFather(TOKEN);
 
@@ -19,7 +21,7 @@ bf.api('getMe')
   .then((json) => {
     if(json.ok) {
       const bot = json.result;
-      console.info(`Your bot is @${bot.username}? ;)`);
+      console.info(`Your bot is @${bot.username}, right? :)`);
     } else {
       console.error(json.description);
     }
