@@ -6,6 +6,9 @@
   "scripts": {
     "test": "node test/test.js"
   },
+  "engines": {
+    "node": ">= 6.2"
+  },
   "repository": {
     "type": "git",
     "url": "https://github.com/aleki/botfather.git"
