@@ -1,6 +1,6 @@
 {
   "name": "botfather",
-  "version": "2.0.9",
+  "version": "2.0.10",
   "description": "Lightweight node.js module for easier use telegram bot platform.",
   "main": "index.js",
   "scripts": {
