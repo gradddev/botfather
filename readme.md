@@ -9,28 +9,29 @@ $ cd node_modules/botfather
 $ TOKEN=... npm test
 ```
 ## Using BotFather
-We recommend storing the access token as environment variable.
-```javascript
-const TOKEN = process.env.TOKEN;
-```
 ```javascript
 const BotFather = require('botfather');
-const bf = new BotFather(TOKEN);
-
+// We recommend storing the token as environment variable.
+const token = process.env.TOKEN;
+const bf = new BotFather(token);
+```
+### Example #1 (Getting basic information about the bot)
+```javascript
 bf.api('getMe')
   .then((json) => {
-    if(json.ok) {
-      const bot = json.result;
-      console.info(`Your bot is @${bot.username}, right? :)`);
-    } else {
+    if(!json.ok) {
       console.error(json.description);
+      return;
     }
+    const bot = json.result;
+    console.info(`Your bot is @${bot.username}, right? :)`);
   })
   .catch((reason) => {
     console.error(reason);
-  });
+  })
 ```
-## Example for getting updates recursively
+
+### Example #2 (Getting updates recursively)
 ```javascript
 /**
   * @param {Object} parameters
@@ -40,22 +41,32 @@ function getUpdates(parameters) {
   const timeout = parameters.timeout || 2;
   bf.api('getUpdates', parameters, timeout)
     .then((json) => {
-      if(json.ok) {
-        const updates = json.result;
-        // ...
-        if(updates.length > 0) {
-          const identifiers = updates.map((update) => update.update_id);
-          parameters.offset = Math.max.apply(Math, identifiers) + 1;
-        }
-        getUpdates(parameters);
-      } else {
+      if(!json.ok) {
         console.error(json.description);
+        return;
       }
+      const updates = json.result;
+      for(let update of updates) {
+        onReceiveUpdate(update);
+      }
+      if(updates.length > 0) {
+        const identifiers = updates.map((update) => update.update_id);
+        parameters.offset = Math.max.apply(Math, identifiers) + 1;
+      }
+      getUpdates(parameters);
     })
     .catch((reason) => {
       console.error(reason);
     })
 }
+/**
+ * @param {Object} update
+ * @see https://core.telegram.org/bots/api#update
+ */
+function onReceiveUpdate(update) {
+  console.log(update);
+}
 
+//
 getUpdates({limit: 100, timeout: 8});
 ```
