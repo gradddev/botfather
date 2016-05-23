@@ -1,6 +1,6 @@
-[![npm](https://img.shields.io/npm/l/botfather.svg?style=flat-square)](https://www.npmjs.com/package/botfather)
-[![npm](https://img.shields.io/npm/v/botfather.svg?style=flat-square)](https://www.npmjs.com/package/botfather)
 [![npm](https://img.shields.io/npm/dm/botfather.svg?style=flat-square)](https://www.npmjs.com/package/botfather)
+[![npm](https://img.shields.io/npm/v/botfather.svg?style=flat-square)](https://www.npmjs.com/package/botfather)
+[![npm](https://img.shields.io/npm/l/botfather.svg?style=flat-square)](https://www.npmjs.com/package/botfather)
 
 # Getting Started with BotFather
 ## Installing BotFather
