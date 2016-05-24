@@ -44,8 +44,7 @@ bf.api('getMe')
   * @see https://core.telegram.org/bots/api#getupdates
   */
 function getUpdates(parameters) {
-  const timeout = parameters.timeout || 2;
-  bf.api('getUpdates', parameters, timeout)
+  bf.api('getUpdates', parameters)
     .then((json) => {
       if(!json.ok) {
         console.error(json.description);
@@ -74,5 +73,5 @@ function onReceiveUpdate(update) {
 }
 
 //
-getUpdates({limit: 100, timeout: 8});
+getUpdates({limit: 100, timeout: 60 * 2});
 ```
