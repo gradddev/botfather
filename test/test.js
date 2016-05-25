@@ -3,14 +3,14 @@
  * Copyright(c) 2016 Aleki
  * MIT Licensed
  */
-'use strict';
+"use strict";
 
 const TOKEN = process.env.TOKEN;
 
-const BotFather = require('../index.js');
+const BotFather = require("../index.js");
 const bf = new BotFather(TOKEN);
 
-bf.api('getMe')
+bf.api("getMe")
   .then((json) => {
     if(json.ok) {
       const bot = json.result;

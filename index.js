@@ -3,6 +3,6 @@
  * Copyright(c) 2016 Aleki
  * MIT Licensed
  */
-'use strict';
+"use strict";
 
-module.exports = require('./lib/bf.js');
+module.exports = require("./lib/bf.js");
