@@ -19,6 +19,6 @@ bf.api('getMe')
       console.error(json.description);
     }
   })
-  .catch((reason) => {
-    console.error(reason);
+  .catch((exception) => {
+    console.error(exception.stack);
   });
