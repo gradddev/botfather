@@ -32,9 +32,9 @@ bf.api('getMe')
     const bot = json.result;
     console.info(`Your bot is @${bot.username}, right? :)`);
   })
-  .catch((reason) => {
-    console.error(reason);
-  })
+  .catch((exception) => {
+    console.error(exception.stack);
+  });
 ```
 
 ### Example #2 (Getting updates recursively)
@@ -60,9 +60,9 @@ function getUpdates(parameters) {
       }
       getUpdates(parameters);
     })
-    .catch((reason) => {
-      console.error(reason);
-    })
+    .catch((exception) => {
+      console.error(exception.stack);
+    });
 }
 /**
  * @param {Object} update
