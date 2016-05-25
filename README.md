@@ -1,8 +1,8 @@
 [![npm](https://img.shields.io/npm/dm/botfather.svg?style=flat-square)](https://www.npmjs.com/package/botfather)
-[![npm](https://img.shields.io/badge/dependencies-none-brightgreen.svg?style=flat-square)](https://www.npmjs.com/package/botfather)
-[![npm](https://img.shields.io/node/v/botfather.svg?style=flat-square)](https://www.npmjs.com/package/botfather)
+[![npm](https://img.shields.io/badge/dependencies-none-brightgreen.svg?style=flat-square)](https://github.com/aleki/botfather/blob/master/package.json)
+[![npm](https://img.shields.io/node/v/botfather.svg?style=flat-square)](https://nodejs.org/en/download/current/)
 [![npm](https://img.shields.io/npm/v/botfather.svg?style=flat-square)](https://www.npmjs.com/package/botfather)
-[![npm](https://img.shields.io/npm/l/botfather.svg?style=flat-square)](https://www.npmjs.com/package/botfather)
+[![npm](https://img.shields.io/npm/l/botfather.svg?style=flat-square)](https://github.com/aleki/botfather/blob/master/LICENSE)
 
 # Getting Started with BotFather
 ## Installing BotFather
