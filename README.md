@@ -36,8 +36,47 @@ bf.api('getMe')
     console.error(exception.stack);
   });
 ```
-
-### Example #2 (Getting updates recursively)
+### Example #2 (Sending file)
+```javascript
+const fs = require("fs");
+// ...
+bf.api("sendDocument", {
+  chat_id: CHAT_ID,
+  document: fs.createReadStream(PATH_TO_FILE)
+})
+  .then((json) => {
+    if(!json.ok) {
+      console.error(json.description);
+      return;
+    }
+    console.info(json.result);
+  })
+  .catch((exception) => {
+    console.error(exception.stack);
+  });
+```
+### Example #3 (Extending your own class)
+```javascript
+class MyBot extends BotFather {
+  constructor(token) {
+    super(token);
+    this.api('getMe')
+      .then((json) => {
+        if(!json.ok) {
+          console.error(json.description);
+          return;
+        }
+        const bot = json.result;
+        console.info(`Your bot is @${bot.username}, right? :)`);
+      })
+      .catch((exception) => {
+        console.error(exception.stack);
+      });
+  }
+}
+new MyBot(token);
+```
+### Example #4 (Getting updates recursively)
 ```javascript
 /**
   * @param {Object} parameters
