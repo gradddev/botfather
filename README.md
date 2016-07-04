@@ -6,21 +6,17 @@
 
 # Getting Started with BotFather
 ## Installing BotFather
-```
+```bash
 $ npm install botfather
 ```
-## Testing BotFather
-```
-$ cd node_modules/botfather
-$ TOKEN=... npm test
-```
-## Using BotFather
+## Enabling BotFather
 ```javascript
 const BotFather = require('botfather');
 // We recommend storing the token as environment variable.
 const token = process.env.TOKEN;
 const bf = new BotFather(token);
 ```
+## Using BotFather
 ### Example #1 (Getting basic information about the bot)
 ```javascript
 bf.api('getMe')
