@@ -5,19 +5,29 @@
 [![npm](https://img.shields.io/npm/l/botfather.svg?style=flat-square)](https://github.com/aleki/botfather/blob/master/LICENSE)
 
 # Getting Started with BotFather
+
+## Bots using BotFather
+
+### [RadioArchiveBot](http://radioarchivebot.ru/)
+![RadioArchiveBot](https://gist.githubusercontent.com/aleki/22275632ab2b4c644837c0a764a46d7d/raw/913e0d176046363a4a69dce43a2d0aa84a2d50de/RadioArchiveBot.png)
+
+Want to add your bot? Please submit a pull request on [GitHub](https://github.com/aleki/botfather) to update this page!
+
 ## Installing BotFather
 ```bash
 $ cd MyBot
 $ npm install botfather --save
 ```
+
 ## Using BotFather
 ```javascript
 const BotFather = require('botfather');
 // We recommend storing the token as environment variable.
 const token = process.env.TOKEN;
 const bf = new BotFather(token);
+// ...
 ```
-## Using BotFather
+
 ### Example #1 (Getting basic information about the bot)
 ```javascript
 bf.api('getMe')
@@ -33,6 +43,7 @@ bf.api('getMe')
     console.error(exception.stack);
   });
 ```
+
 ### Example #2 (Sending file)
 ```javascript
 const fs = require("fs");
@@ -52,6 +63,7 @@ bf.api("sendDocument", {
     console.error(exception.stack);
   });
 ```
+
 ### Example #3 (Extending your own class)
 ```javascript
 class MyBot extends BotFather {
@@ -73,6 +85,7 @@ class MyBot extends BotFather {
 }
 new MyBot(token);
 ```
+
 ### Example #4 (Getting updates recursively)
 ```javascript
 /**
