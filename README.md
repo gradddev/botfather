@@ -7,9 +7,10 @@
 # Getting Started with BotFather
 ## Installing BotFather
 ```bash
-$ npm install botfather
+$ cd MyBot
+$ npm install botfather --save
 ```
-## Enabling BotFather
+## Using BotFather
 ```javascript
 const BotFather = require('botfather');
 // We recommend storing the token as environment variable.
