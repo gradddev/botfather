@@ -8,7 +8,7 @@
 
 ## Bots using BotFather
 
-### [RadioArchiveBot](http://radioarchivebot.ru/)
+### [RadioArchiveBot](http://telegram.me/RadioArchiveBot)
 ![RadioArchiveBot](https://gist.githubusercontent.com/aleki/22275632ab2b4c644837c0a764a46d7d/raw/913e0d176046363a4a69dce43a2d0aa84a2d50de/RadioArchiveBot.png)
 
 Want to add your bot? Please submit a pull request on [GitHub](https://github.com/aleki/botfather) to update this page!
