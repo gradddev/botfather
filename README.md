@@ -8,8 +8,10 @@
 
 ## Bots using BotFather
 
-### [RadioArchiveBot](http://telegram.me/RadioArchiveBot)
-![RadioArchiveBot](https://gist.githubusercontent.com/aleki/22275632ab2b4c644837c0a764a46d7d/raw/913e0d176046363a4a69dce43a2d0aa84a2d50de/RadioArchiveBot.png)
+| Name | Description |
+| --- | --- |
+| [RadioArchiveBot](http://telegram.me/RadioArchiveBot) | Listen your favorite radio stations right in the Telegram! |
+| [EPGBot](http://telegram.me/EPGBot) | Electronic program guides (TV guides)
 
 Want to add your bot? Please submit a pull request on [GitHub](https://github.com/aleki/botfather) to update this page!
 
@@ -19,13 +21,14 @@ $ cd MyBot
 $ npm install botfather --save
 ```
 
+
 ## Using BotFather
 ```javascript
-const BotFather = require('botfather');
 // We recommend storing the token as environment variable.
-const token = process.env.TOKEN;
-const bf = new BotFather(token);
-// ...
+const TOKEN = process.env.TOKEN
+
+const BotFather = require('botfather')
+const bf = new BotFather(token)
 ```
 
 ### Example #1 (Getting basic information about the bot)
@@ -33,15 +36,15 @@ const bf = new BotFather(token);
 bf.api('getMe')
   .then((json) => {
     if(!json.ok) {
-      console.error(json.description);
-      return;
+      console.error(json.description)
+      return
     }
-    const bot = json.result;
-    console.info(`Your bot is @${bot.username}, right? :)`);
+    const bot = json.result
+    console.info(`Your bot is @${bot.username}, right? :)`)
   })
   .catch((exception) => {
-    console.error(exception.stack);
-  });
+    console.error(exception.stack)
+  })
 ```
 
 ### Example #2 (Sending file)
@@ -54,73 +57,94 @@ bf.api("sendDocument", {
 })
   .then((json) => {
     if(!json.ok) {
-      console.error(json.description);
-      return;
+      console.error(json.description)
+      return
     }
-    console.info(json.result);
+    console.info(json.result)
   })
   .catch((exception) => {
-    console.error(exception.stack);
-  });
+    console.error(exception.stack)
+  })
 ```
 
 ### Example #3 (Extending your own class)
 ```javascript
 class MyBot extends BotFather {
+
+  /**
+   * @param {string} token
+   * @see https://core.telegram.org/bots#6-botfather
+   */
   constructor(token) {
-    super(token);
+    super(token)
     this.api('getMe')
       .then((json) => {
         if(!json.ok) {
-          console.error(json.description);
-          return;
+          console.error(json.description)
+          return
         }
-        const bot = json.result;
-        console.info(`Your bot is @${bot.username}, right? :)`);
+        const bot = json.result
+        console.info(`Your bot is @${bot.username}, right? :)`)
       })
       .catch((exception) => {
-        console.error(exception.stack);
-      });
+        console.error(exception.stack)
+      })
   }
 }
-new MyBot(token);
+new MyBot(token)
 ```
 
 ### Example #4 (Getting updates recursively)
 ```javascript
-/**
-  * @param {Object} parameters
-  * @see https://core.telegram.org/bots/api#getupdates
-  */
-function getUpdates(parameters) {
-  bf.api('getUpdates', parameters)
-    .then((json) => {
-      if(!json.ok) {
-        console.error(json.description);
-        return;
-      }
-      const updates = json.result;
-      for(let update of updates) {
-        onReceiveUpdate(update);
-      }
-      if(updates.length > 0) {
-        const identifiers = updates.map((update) => update.update_id);
-        parameters.offset = Math.max.apply(Math, identifiers) + 1;
-      }
-      getUpdates(parameters);
-    })
-    .catch((exception) => {
-      console.error(exception.stack);
-    });
-}
-/**
- * @param {Object} update
- * @see https://core.telegram.org/bots/api#update
- */
-function onReceiveUpdate(update) {
-  console.log(update);
+class MyBot extends BotFather {
+
+  /**
+   * @constructor
+   * @param {string} token
+   * @see https://core.telegram.org/bots#6-botfather
+   */
+  constructor(token) {
+    super(token)
+    this.getUpdates()
+  }
+
+  /**
+   * @param {Object} parameters
+   * @see https://core.telegram.org/bots/api#getupdates
+   */
+  getUpdates(parameters = {limit: 100, timeout: 60 * 2}) {
+    bf.api('getUpdates', parameters)
+      .then((json) => {
+        if(!json.ok) {
+          console.error(json.description)
+          setTimeout(() => this.getUpdates(parameters), 5000)
+          return
+        }
+        const updates = json.result
+        for(let update of updates) {
+          this.onReceiveUpdate(update)
+        }
+        // offset = update_id of last processed update + 1
+        if(updates.length > 0) {
+          const identifiers = updates.map((update) => update.update_id)
+          parameters.offset = Math.max.apply(Math, identifiers) + 1
+        }
+        this.getUpdates(parameters)
+      })
+      .catch((exception) => {
+        console.error(exception.stack)
+        setTimeout(() => this.getUpdates(parameters), 5000)
+      })
+  }
+
+  /**
+   * @param {Object} update
+   * @see https://core.telegram.org/bots/api#update
+   */
+   onReceiveUpdate(update) {
+     console.log(update)
+   }
 }
 
-//
-getUpdates({limit: 100, timeout: 60 * 2});
+new MyBot(TOKEN)
 ```
