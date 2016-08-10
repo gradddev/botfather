@@ -11,13 +11,14 @@ const BotFather = require("../index.js")
 const bf = new BotFather(TOKEN)
 
 bf.api("getMe")
-  .then((json) => {
+  .then(json => {
     if(json.ok) {
-      const bot = json.result
-      console.info(`All right! Your @${bot.username} ready for use :)`)
-    } else {
-      console.error(json.description)
+      return json.result
     }
+    console.error(json.description)
+  })
+  .then(bot => {
+    console.info(`All right! Your @${bot.username} ready for use :)`)
   })
   .catch((exception) => {
     console.error(exception.stack)
