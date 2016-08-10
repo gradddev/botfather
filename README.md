@@ -35,11 +35,12 @@ const bf = new BotFather(TOKEN)
 ```javascript
 bf.api('getMe')
   .then((json) => {
-    if(!json.ok) {
-      console.error(json.description)
-      return
+    if(json.ok) {
+      return json.result
     }
-    const bot = json.result
+    console.error(json.description)
+  })
+  .then(bot => {
     console.info(`Your bot is @${bot.username}, right? :)`)
   })
   .catch((exception) => {
@@ -56,11 +57,13 @@ bf.api("sendDocument", {
   document: fs.createReadStream(PATH_TO_FILE)
 })
   .then((json) => {
-    if(!json.ok) {
-      console.error(json.description)
-      return
+    if(json.ok) {
+      return json.result
     }
-    console.info(json.result)
+    console.error(json.description)
+  })
+  .then((result) => {
+    console.info(result)
   })
   .catch((exception) => {
     console.error(exception.stack)
@@ -79,11 +82,12 @@ class MyBot extends BotFather {
     super(token)
     this.api('getMe')
       .then((json) => {
-        if(!json.ok) {
-          console.error(json.description)
-          return
+        if(json.ok) {
+          return json.result
         }
-        const bot = json.result
+        console.error(json.description)
+      })
+      .then(bot => {
         console.info(`Your bot is @${bot.username}, right? :)`)
       })
       .catch((exception) => {
@@ -115,12 +119,13 @@ class MyBot extends BotFather {
   getUpdates(parameters = {limit: 100, timeout: 60 * 2}) {
     this.api('getUpdates', parameters)
       .then((json) => {
-        if(!json.ok) {
-          console.error(json.description)
-          setTimeout(() => this.getUpdates(parameters), 5000)
-          return
+        if(json.ok) {
+          return json.result
         }
-        const updates = json.result
+        console.error(json.description)
+        setTimeout(() => this.getUpdates(parameters), 5000)
+      })
+      .then(updates => {
         for(let update of updates) {
           this.onReceiveUpdate(update)
         }
