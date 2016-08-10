@@ -34,7 +34,7 @@ const bf = new BotFather(TOKEN)
 ### Example #1 (Getting basic information about the bot)
 ```javascript
 bf.api('getMe')
-  .then((json) => {
+  .then(json => {
     if(json.ok) {
       return json.result
     }
@@ -43,7 +43,7 @@ bf.api('getMe')
   .then(bot => {
     console.info(`Your bot is @${bot.username}, right? :)`)
   })
-  .catch((exception) => {
+  .catch(exception => {
     console.error(exception.stack)
   })
 ```
@@ -56,16 +56,16 @@ bf.api("sendDocument", {
   chat_id: CHAT_ID,
   document: fs.createReadStream(PATH_TO_FILE)
 })
-  .then((json) => {
+  .then(json => {
     if(json.ok) {
       return json.result
     }
     console.error(json.description)
   })
-  .then((result) => {
+  .then(result => {
     console.info(result)
   })
-  .catch((exception) => {
+  .catch(exception => {
     console.error(exception.stack)
   })
 ```
@@ -81,7 +81,7 @@ class MyBot extends BotFather {
   constructor(token) {
     super(token)
     this.api('getMe')
-      .then((json) => {
+      .then(json => {
         if(json.ok) {
           return json.result
         }
@@ -90,7 +90,7 @@ class MyBot extends BotFather {
       .then(bot => {
         console.info(`Your bot is @${bot.username}, right? :)`)
       })
-      .catch((exception) => {
+      .catch(exception => {
         console.error(exception.stack)
       })
   }
@@ -118,7 +118,7 @@ class MyBot extends BotFather {
    */
   getUpdates(parameters = {limit: 100, timeout: 60 * 2}) {
     this.api('getUpdates', parameters)
-      .then((json) => {
+      .then(json => {
         if(json.ok) {
           return json.result
         }
@@ -136,7 +136,7 @@ class MyBot extends BotFather {
         }
         this.getUpdates(parameters)
       })
-      .catch((exception) => {
+      .catch(exception => {
         console.error(exception.stack)
         setTimeout(() => this.getUpdates(parameters), 5000)
       })
