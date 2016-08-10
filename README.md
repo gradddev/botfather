@@ -28,7 +28,7 @@ $ npm install botfather --save
 const TOKEN = process.env.TOKEN
 
 const BotFather = require('botfather')
-const bf = new BotFather(token)
+const bf = new BotFather(TOKEN)
 ```
 
 ### Example #1 (Getting basic information about the bot)
@@ -91,7 +91,7 @@ class MyBot extends BotFather {
       })
   }
 }
-new MyBot(token)
+new MyBot(TOKEN)
 ```
 
 ### Example #4 (Getting updates recursively)
