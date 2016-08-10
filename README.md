@@ -113,7 +113,7 @@ class MyBot extends BotFather {
    * @see https://core.telegram.org/bots/api#getupdates
    */
   getUpdates(parameters = {limit: 100, timeout: 60 * 2}) {
-    bf.api('getUpdates', parameters)
+    this.api('getUpdates', parameters)
       .then((json) => {
         if(!json.ok) {
           console.error(json.description)
