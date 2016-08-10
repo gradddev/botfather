@@ -95,6 +95,7 @@ class MyBot extends BotFather {
       })
   }
 }
+
 new MyBot(TOKEN)
 ```
 
