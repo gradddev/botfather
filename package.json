@@ -19,5 +19,9 @@
     "telegram bot platform"
   ],
   "author": "Aleki",
-  "license": "MIT"
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/aleki/botfather/issues"
+  },
+  "homepage": "https://github.com/aleki/botfather#readme"
 }
