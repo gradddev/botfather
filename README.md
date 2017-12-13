@@ -6,21 +6,11 @@
 
 # Getting Started with BotFather
 
-## Bots using BotFather
-
-| Name | Description |
-| --- | --- |
-| [RadioArchiveBot](http://telegram.me/RadioArchiveBot) | Listen your favorite radio stations right in the Telegram! |
-| [EPGBot](http://telegram.me/EPGBot) | Electronic program guides (TV guides)
-
-Want to add your bot? Please submit a pull request on [GitHub](https://github.com/aleki/botfather) to update this page!
-
 ## Installing BotFather
 ```bash
 $ cd MyBot
 $ npm install botfather --save
 ```
-
 
 ## Using BotFather
 ```javascript
